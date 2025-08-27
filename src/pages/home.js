@@ -12,8 +12,8 @@ export default function renderHomePage() {
     const divRoot = document.getElementById("root");
     divRoot.innerHTML = '';
 
-    const hero = Hero();
-    divRoot.appendChild =(hero);
+    const containerHero = Hero();
+    divRoot.appendChild(containerHero);
 
-    
+
 }
