@@ -1,8 +1,7 @@
 <?php
 
-require_once "../model/userModel.php";
-require_once "../helpers/response.php";
-require_once "../confg/dataBase.php";
+require_once __DIR__ ."/../model/userModel.php";
+require_once "senha.php";
 
 class Controlador{
     public static function login($conn, $data){
@@ -10,14 +9,14 @@ class Controlador{
         $data['senha'] = trin($data['senha']);
 
         //confirma se tem algum campo vazio
-        id(empty ($data['email']) || empty($data['senha'])){
+        if(empty($data['email']) || empty($data['senha'])){
             return jsonResponse([
                 "status"=>"ERRO",
                 "mensagem"=>"Preencha todos os campos"
             ],401);
         }
     
-        $user = userModel::validador($conn, $data['email'], "$data['senha']");
+        $user = userModel::validador($conn, $data['email'], $data['senha']);
         if ($user){
             return jsonResponse (
                 ["id"=> $user ['id'],
@@ -26,7 +25,7 @@ class Controlador{
                 "cargo_id"=> $user['cargo_id']
                 ]);
         }else{
-             return jjsonResponse([
+             return jsonResponse([
                     "status"=>"ERRO",
                     "mensagem"=>"Credenciais invalidas"
                 ],401);

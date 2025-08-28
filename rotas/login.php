@@ -1,6 +1,5 @@
 <?php
-require_once:"../controler/autenticador.php";
-require_once "../helpers/response.php";
+require_once __DIR__. "/../Controler/autenticador.php";
 
 if($_SERVER['REQUEST_METHOD'] === "POST "){
     $data = json_decode(file_put_contents("pht://imput"), true);

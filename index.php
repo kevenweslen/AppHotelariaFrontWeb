@@ -1,5 +1,7 @@
 <?php
 require_once "confg/dataBase.php";
+require_once "helpers/response.php";
+
  
 if ($erroDB) {
     echo "Erro no Site";
@@ -16,7 +18,8 @@ $route = $segment[0] ?? null;
 $subRoute = $segment[1] ?? null;
  
 if ($route != "api"){
-    require __DIR__ . "/public/index.html";
+    //require __DIR__ . "/public/index.html";
+    require "teste.php";
     exit;
 
     
@@ -24,7 +27,7 @@ if ($route != "api"){
     
     elseif($route === "api"){
     if(in_array($subRoute, ["login"])){
-        require "routes/${subRoute}.php";
+        require "rotas/${subRoute}.php";
     }else{
     return jsonResponse(['message'=>'rota da API não encontrada.', 404]);  
     }
