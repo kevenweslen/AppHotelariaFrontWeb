@@ -8,7 +8,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST "){
     jsonResponse([
         'erro'=>'ERRO',
         '1mensagem'=>'metodo não permitido'
-    ],405);
+    ],418 'I m a teapot);
 }
 
 
