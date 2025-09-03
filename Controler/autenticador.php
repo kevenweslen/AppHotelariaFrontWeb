@@ -1,12 +1,13 @@
 <?php
 
-require_once __DIR__ ."/../model/userModel.php";
 require_once "senha.php";
+require_once __DIR__ . "/../model/userModel.php";
+require_once __DIR__ . "/../helpers/token_jwt.php";
 
 class Controlador{
     public static function login($conn, $data){
-        $data['email'] = trin($data['email']);
-        $data['senha'] = trin($data['senha']);
+        $data['email'] = trim($data['email']);
+        $data['senha'] = trim($data['senha']);
 
         //confirma se tem algum campo vazio
         if(empty($data['email']) || empty($data['senha'])){
@@ -18,12 +19,11 @@ class Controlador{
     
         $user = userModel::validador($conn, $data['email'], $data['senha']);
         if ($user){
-            return jsonResponse (
-                ["id"=> $user ['id'],
-                "nome"=> $user['nome'],
-                "email"=> $user['email'],
-                "cargo_id"=> $user['cargo_id']
-                ]);
+            $token = criarToken($user);
+
+
+            return jsonResponse (["token" => $token]);
+
         }else{
              return jsonResponse([
                     "status"=>"ERRO",

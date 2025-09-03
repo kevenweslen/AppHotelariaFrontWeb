@@ -8,5 +8,4 @@ class senhaControler{
         return password_verify('$senha', '$hash');
     }
 }
-
 ?>

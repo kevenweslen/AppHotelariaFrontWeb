@@ -26,7 +26,7 @@ export default function renderLoginPage() {
             const result = await loginRequest(email, senha);
             window.location.pathname = /home;
         }catch{
-            console.log("Wrro inesperado!!!     :(");
+            console.log("Erro inesperado!!!     :(");
     };
 
 });
