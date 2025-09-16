@@ -24,3 +24,28 @@ input {
     background-color: rgb(3, 65, 136);
     border-color: rgb(3, 65, 136);
 }
+
+#root {
+    flex-direction: column;
+    gap: 25px;
+}
+
+.hero-frame {
+    overflow: hidden; /* Impede que a imagem saia do quadro */
+    vertical-align: top;
+
+}
+ 
+.hero img, .hero{
+    /* Aplica propriedade cover para recortar parte da imagem (e não distorce-lá),
+    definindo seu ponto de foco a partir da propriedade object-position */
+    object-fit: cover;
+    object-position: center; /* Centraliza o recorte da imagem */
+    height: 70vh;
+}
+ 
+@media (max-width: 576px) {
+    .hero img, .hero{
+        height: 50vh;
+    }
+}

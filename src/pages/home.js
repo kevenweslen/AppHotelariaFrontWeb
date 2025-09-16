@@ -15,5 +15,14 @@ export default function renderHomePage() {
     const containerHero = Hero();
     divRoot.appendChild(containerHero);
 
+    const cards = RoomCard();
+    divRoot.appendChild(cards); 
+
+    for (var i=0; i < 3; i++) {
+        const cards = RoomCard();
+        cardsGroup.appendChild(cards);
+    }
+
+    divRoot.appendChild(cardsGroup);    
 
 }
