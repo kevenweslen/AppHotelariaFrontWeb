@@ -1,19 +1,31 @@
 <?php
-require_once __DIR__ ."/controler/autenticador.php";
-require_once __DIR__ ."/controler/senha.php";
+require_once __DIR__ ."/controllers/autenticador.php";
+require_once __DIR__ ."/controllers/senha.php";
 require_once __DIR__ ."/helpers/token_jwt.php";
-require_once __DIR__ ."/controler/quartoControler.php";
+require_once __DIR__ ."/controllers/quartoControler.php";
+require_once __DIR__ ."/controllers/clientController.php";
 
 $data = [
+    /*
+    ("quartos")
+    
     "name" => "quarto normal",
     "numero" => 1,
     "qtd_solteiro" => 2,
     "qtd_casal" => 1,
     "preco" => 300,
     "disponivel" => 1
+    "id"
+*/
+    "nome" => "keven",
+    "email" => "keven@gmail.com",
+    "telefone" => "11 11111-1111",
+    "cpf" => "12112112136"
+    "senha" => "123456"
+    "cargo_id" => "2"
 ];
  
-quartoControler::create($conn, $data);
+clientController::create($conn, $data);
 
 // $data = [
 //     "email" => "leo@gmail.com",
