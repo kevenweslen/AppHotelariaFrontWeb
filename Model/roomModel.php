@@ -5,7 +5,7 @@ class RoomModel{
         $sql = "INSERT INTO quartos (nome, numero, qnt_cama_casal, qnt_cama_solteiro, preco, disponivel) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("siiidi", 
-            $data['name'],
+            $data['nome'],
             $data['numero'],
             $data['qtd_solteiro'],
             $data['qtd_casal'],
@@ -31,7 +31,7 @@ class RoomModel{
     public static function delete($conn, $id){
         $sql = "DELETE FROM quartos WHERE id=?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_prepam("i", $id);
+        $stmt->bind_param("i", $id);
         return $stmt->execute();
     }
     public static function getAll($conn) {
