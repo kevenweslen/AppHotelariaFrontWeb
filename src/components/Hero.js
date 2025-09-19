@@ -3,42 +3,43 @@ export default function Hero() {
   containerHero.className = 'hero w-100 d-flex justify-content-center';
   containerHero.innerHTML =
     `
-<div class='hero-frame w-100'>
-  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+<div class = "hero-frame w-100">
+    <div id="carouselExampleIndicators" class="carousel slide">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+  
+      <div class="carousel-inner shadow">
 
-    <ol class="carousel-indicators">
-      <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
-      <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
-      <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
-    </ol>
+        <div class="carousel-item active">
+          <img src="public/assets/images/backgond_hero0.jpg" class="d-block w-100" alt="...">
+        </div>
 
-    <div class="carousel-inner shadow">
+        <div class="carousel-item">
+          <img src="public/assets/images/backgond_hero1.jpg" class="d-block w-100" alt="...">
+        </div>
 
-      <div class="carousel-item active">
-        <img class="d-block w-100" src="public/assets/images/backgond_hero0.jpg" alt="First slide">
+        <div class="carousel-item">
+          <img src="public/assets/images/backgond_hero2.jpg" class="d-block w-100" alt="...">
+        </div>
+
       </div>
 
-      <div class="carousel-item">
-        <img class="d-block w-100" src="public/assets/images/backgond_hero1.jpg" alt="Second slide">
-      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
 
-      <div class="carousel-item">
-        <img class="d-block w-100" src="public/assets/images/backgond_hero2.jpg" alt="Third slide">
-      </div>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+
 
     </div>
-
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-    
-  </div>
-</div>`;
+</div>
+    `;
   return containerHero;
 }

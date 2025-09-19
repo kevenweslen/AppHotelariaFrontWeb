@@ -1,13 +1,13 @@
-export default function RoomCard() {
+export default function RoomCard(index) {
     const card = document.createElement('div');
     card.className = "cardContainer";
     card.innerHTML =
     //Bootstrap
     `
     <div class="card" style="width: 18rem;">
-        <div id="carouselExampleIndicators-RoomCard" class="carousel slide">
+        <div id="carouselExampleIndicators${index}" class="carousel slide">
             <div class="carousel-indicators">
-                <button visually-hiddentype="button" data-bs-target="#carouselExampleIndicators-RoomCard" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button visually-hiddentype="button" data-bs-target="#carouselExampleInd'icators-RoomCard" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#carouselExampleIndicators-RoomCard" data-bs-slide-to="1" aria-label="Slide 2"></button>
                 <button type="button" data-bs-target="#carouselExampleIndicators-RoomCard" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
@@ -22,16 +22,16 @@ export default function RoomCard() {
                 </div>
 
                 <div class="carousel-item">
-                    <img src="public/assets/images/carousel1.jpg" class="d-block w-100" alt="...">
+                    <img src="public/assets/images/imagemCard1.jpg" class="d-block w-100" alt="...">
                 </div>
             </div>
 
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators-RoomCard" data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators${index}" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon visually-hidden" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
  
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators-RoomCard" data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators${index}" data-bs-slide="next">
                 <span class="carousel-control-next-icon visually-hidden" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
@@ -39,9 +39,8 @@ export default function RoomCard() {
         </div>
         
         <div class="card-body">
-            <h5 class="card-title">Nome do quarto</h5>
-            <p class="card-text">Descrição do quarto: Lorem ipsum dolor sit amet consectetur
-             adipisicing elit. Officia, harum libero, ratione, nostrum iusto dicta.</p>
+            <h5 class="card-title">Quarto solteiro</h5>
+            <p class="card-text">Descrição do quarto: A melhor indicação para pessoas que estão viajando e aproveitando a vida em seu proprio ritimo.Este quarto possui apenas uma cama de solteiro, possui 2 comodos quarto e banheiro com a melhor otimização de espaço possivel</p>
             <a href="#" class="btn btn-primary">Reservar</a>
         </div>
     </div>

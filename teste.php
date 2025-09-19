@@ -5,8 +5,8 @@ require_once __DIR__ ."/helpers/token_jwt.php";
 require_once __DIR__ ."/controllers/quartoControler.php";
 require_once __DIR__ ."/controllers/clientController.php";
 
-//("quartos")
-/*$data = [ 
+/*("quartos")
+$data = [ 
     "nome" => "quarto normal",
     "numero" => 1,
     "qtd_solteiro" => 2,
@@ -18,29 +18,29 @@ require_once __DIR__ ."/controllers/clientController.php";
 clientController::create($conn, $data);
 */
 
-/*
-("Clientes")
+
+/*("Clientes")*/
 $data[
     "nome" => "keven",
     "email" => "keven@gmail.com",
     "telefone" => "11 11111-1111",
-    "cpf" => "12112112136"
-    "senha" => "123456"
-    "cargo_id" => "2"
+    "cpf" => "12112112136",
+    "senha" => "123456",
+    "cargo_id" => "2",
     "id"
 ];
 clientController::create($conn, $data);
-*/
 
 
-("Adicionais")
+
+/*("Adicionais")
 $data[
-    "nome" => "Sseviço de quarto",
+    "nome" => "Seviço de quarto",
     "preco" => 99.99,
     "id"
 ];
 AdicionalController::create($conn, $data);
-
+*/
 
 // $data = [
 //     "email" => "leo@gmail.com",

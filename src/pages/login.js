@@ -1,4 +1,4 @@
-import { loginRequest } from "../api/authAPI.js";
+import { loginRequest, saveToken } from "../api/authAPI.js";
 import Form from "../components/Form.js";
 import Navbar from "../components/Navbar.js";
 
@@ -14,7 +14,7 @@ export default function renderLoginPage() {
 
     const imputEmail = contentForm.querySelector('imput[type="email"]');
     const imputsenha = contentForm.querySelector('imput[type="senha"]');
-    const btn = contentForm.querySelector('button[type="submit]"');
+    // por quer isso não existe? const btn = contentForm.querySelector('button[type="submit]"');
 
 //monmitora o clique no botão para adicionar um evento de submeter os daods do form
     contentForm.addEventListener('submit', async (e) => {
@@ -24,8 +24,8 @@ export default function renderLoginPage() {
 
         try{
             const result = await loginRequest(email, senha);
-            window.location.pathname = "/home";
             saveToken(result.token);
+            //window.location.pathname = "/home";
         }catch{
             console.log("Erro inesperado!!!     :(");
     };

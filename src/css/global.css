@@ -30,10 +30,9 @@ input {
     gap: 25px;
 }
 
+/*Hero section*/
 .hero-frame {
     overflow: hidden; /* Impede que a imagem saia do quadro */
-    vertical-align: top;
-
 }
  
 .hero img, .hero{
@@ -48,4 +47,18 @@ input {
     .hero img, .hero{
         height: 50vh;
     }
+}
+
+.cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+}
+
+.divDate{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
 }
