@@ -1,56 +1,54 @@
 <?php
-
-class RoomModel{
+class QuartoModel{
     public static function create ($conn, $data){
         $sql = "INSERT INTO quartos (nome, numero, qnt_cama_casal, qnt_cama_solteiro, preco, disponivel) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("siiidi", 
-            $data['nome'],
-            $data['numero'],
-            $data['qtd_solteiro'],
-            $data['qtd_casal'],
-            $data['preco'],
-            $data['disponivel']
-        );
-        return $stmt->execute();
+        $stmt->bind_param("ssiibi",
+        $data["nome"],
+        $data["numero"],
+        $data["qnt_cama_casal"],
+        $data["qnt_cama_solteiro"],
+        $data["preco"],
+        $data["disponivel"]
+    );
+    return $stmt->execute();
     }
-    public static function update($conn, $id, $data){
+
+    public static function update ($conn, $id, $data){
         $sql = "UPDATE quartos SET nome=?, numero=?, qnt_cama_casal=?, qnt_cama_solteiro=?, preco=?, disponivel=? WHERE id=?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("siiidii",
-            $data["nome"],
-            $data["numero"],
-            $data["qnt_cama_casal"],
-            $data["qnt_cama_solteiro"],
-            $data["preco"],
-            $data["disponivel"],
-            $id
-        );
-        return $stmt->execute();
-    }
+        $stmt->bind_param("ssiibii",
+        $data["nome"],
+        $data["numero"],
+        $data["qnt_cama_casal"],
+        $data["qnt_cama_solteiro"],
+        $data["preco"],
+        $data["disponivel"],
+        $id
+    );
+    return $stmt->execute();    
+    }    
+
     public static function delete($conn, $id){
         $sql = "DELETE FROM quartos WHERE id=?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $id);
         return $stmt->execute();
     }
-    public static function getAll($conn) {
+
+    public static function getAll($conn){
         $sql = "SELECT * FROM quartos";
         $result = $conn->query($sql);
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
     public static function getById($conn, $id){
-        $sql = "SELECT * FROM quartos WHERE id= ?";
+        $sql = "SELECT * FROM quartos WHERE id=?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $id);
         $stmt->execute();
         return $stmt->get_result()->fetch_assoc();
     }
-    /*public static function getAllDispo($conn){
-        $sql = "SELECT * FROM quartos WHERE diponivel=1"
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
-    }*/
 }
 
 ?>

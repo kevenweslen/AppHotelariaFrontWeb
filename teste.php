@@ -1,25 +1,32 @@
 <?php
-require_once __DIR__ ."/controllers/autenticador.php";
-require_once __DIR__ ."/controllers/senha.php";
-require_once __DIR__ ."/helpers/token_jwt.php";
-require_once __DIR__ ."/controllers/quartoControler.php";
-require_once __DIR__ ."/controllers/clientController.php";
+require_once __DIR__ . "/controllers/autenticador.php";
+require_once __DIR__ . "/controllers/senha.php";
+require_once __DIR__ . "/helpers/token_jwt.php";
 
-/*("quartos")
+require_once __DIR__ . "/controllers/quartoControler.php";
+require_once __DIR__ . "/controllers/clientController.php";
+require_once __DIR__ . "/controllers/adicionalController.php";
+
+/*("quartos")*/
 $data = [ 
     "nome" => "quarto normal",
     "numero" => 1,
     "qtd_solteiro" => 2,
     "qtd_casal" => 1,
     "preco" => 300,
-    "disponivel" => 1
+    "disponivel" => 1,
     "id"
 ];
-clientController::create($conn, $data);
-*/
+
+QuartoControler::getAll($conn);
+//ClientController::getAll($conn);
+//AdicionalController::getAll($conn);
+//QuartoControler::getAll($conn);
+//QuartoControler::getAll($conn);
 
 
-/*("Clientes")*/
+
+/*("Clientes")
 $data[
     "nome" => "keven",
     "email" => "keven@gmail.com",
@@ -30,7 +37,7 @@ $data[
     "id"
 ];
 clientController::create($conn, $data);
-
+*/
 
 
 /*("Adicionais")

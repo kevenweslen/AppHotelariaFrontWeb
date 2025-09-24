@@ -11,9 +11,9 @@ class ClientModel{
         $data["senha"],
         $data["cargos_id"]
         );
-    return $stmt->execute();    
+    return $stmt->execute();
     }
-    public static function create ($conn, $data){
+    public static function update ($conn, $data, $id){
     $sql = "INSERT INTO clientes (nome, email, telefone, cpf, senha, cargos_id) WHERE id=?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("sssssii",
@@ -22,7 +22,8 @@ class ClientModel{
         $data["telefone"],
         $data["cpf"],
         $data["senha"],
-        $data["cargos_id"]
+        $data["cargos_id"],
+        $id
         );
     return $stmt->execute();    
     }

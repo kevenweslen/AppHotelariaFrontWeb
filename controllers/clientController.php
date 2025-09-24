@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . "/../model/clientModel.php";
 class ClientController {
-    public static function create($conn, $id){
+    public static function create($conn, $data){
         $result = ClientModel::create($conn, $data);
         if($result){
             return jsonResponse(['message'=>"Cliente cadasrado Com sucesso"]);    
@@ -10,12 +10,12 @@ class ClientController {
         }
     }
 
-    public static function update($conn, $id){
-        $result = ClientModel::update($conn, $data);
+    public static function update($conn, $data, $id){
+        $result = ClientModel::update($conn, $data, $id);
         if($result){
-            return jsonResponse(['message'=>"Cliente cadasrado Com sucesso"]);    
+            return jsonResponse(['message'=> 'Adicional atualizado com sucesso.'], 400);
         }else{
-            return jsonResponse(['message'=>"Não foi possivel cadastrar o cliente"],400);
+            return jsonResponse(['message'=> 'Não foi possivel alterar dados do adicional'], 400);
         }
     }
 
