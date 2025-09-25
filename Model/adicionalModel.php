@@ -21,7 +21,7 @@ class adicionalModel {
         VALUES (?, ?);";
         
         $stat = $conn->prepare($sql);
-        $stat->bind_param("sd", 
+        $stat->bind_param("sd",
             $data["nome"],
             $data["preco"]
         );

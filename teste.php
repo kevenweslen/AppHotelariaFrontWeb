@@ -3,11 +3,13 @@ require_once __DIR__ . "/controllers/autenticador.php";
 require_once __DIR__ . "/controllers/senha.php";
 require_once __DIR__ . "/helpers/token_jwt.php";
 
-require_once __DIR__ . "/controllers/quartoControler.php";
-require_once __DIR__ . "/controllers/clientController.php";
 require_once __DIR__ . "/controllers/adicionalController.php";
+require_once __DIR__ . "/controllers/clienteController.php";
+require_once __DIR__ . "/controllers/pedidoController.php";
+require_once __DIR__ . "/controllers/quartoController.php";
+require_once __DIR__ . "/controller/reservaController.php";
 
-/*("quartos")*/
+/*("quartos")
 $data = [ 
     "nome" => "quarto normal",
     "numero" => 1,
@@ -17,12 +19,13 @@ $data = [
     "disponivel" => 1,
     "id"
 ];
+*/
 
-QuartoControler::getAll($conn);
-//ClientController::getAll($conn);
-//AdicionalController::getAll($conn);
-//QuartoControler::getAll($conn);
-//QuartoControler::getAll($conn);
+//auartoControler::getAll($conn);
+//clientController::getAll($conn);
+//adicionalController::getAll($conn);
+//quartoControler::getAll($conn);
+//quartoControler::getAll($conn);
 
 
 
@@ -40,14 +43,14 @@ clientController::create($conn, $data);
 */
 
 
-/*("Adicionais")
+/*("Adicionais")*/
 $data[
     "nome" => "Seviço de quarto",
     "preco" => 99.99,
     "id"
 ];
-AdicionalController::create($conn, $data);
-*/
+adicionalController::getAll($conn);
+
 
 // $data = [
 //     "email" => "leo@gmail.com",

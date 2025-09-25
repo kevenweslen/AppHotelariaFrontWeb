@@ -1,4 +1,3 @@
-senhaControler
 <?php
 
 class senhaControler{

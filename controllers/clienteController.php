@@ -1,7 +1,7 @@
 <?php
 
-require_once __DIR__ . "/../models/clienteModel.php";
-require_once __DIR__ . "/../controllers/ValidateController.php";
+require_once __DIR__ . "/../model/clienteModel.php";
+require_once __DIR__ . "/../controllers/validadorController.php";
 //no lugar deste require_once validateController eu deveria chamr o validador?
 
 class clienteController{

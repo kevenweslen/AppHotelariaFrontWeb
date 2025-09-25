@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "/../models/AdicionalModel.php";
+require_once __DIR__ . "/../model/adicionalModel.php";
 
 class adiciController{
     public static function create($conn, $data) {
