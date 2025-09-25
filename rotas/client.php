@@ -1,43 +1,50 @@
 <?php
-require_once __DIR__ . "/../controllers/clientController.php";
 
-if ( $_SERVER['REQUEST_METHOD'] === "GET" ){
-    $id = $segment[2] ?? null;
+require_once __DIR__ . "/../controllers/clienteController.php";
 
-    if ( isset($id) ){
-        ClientController::getById($conn, $id);
+if ( $_SERVER['REQUEST_METHOD'] === "GET") {
+    $id = $segments[2] ?? null;
 
-    }else{
-        ClientController::getAll($conn);
+    if (isset($id) === null) {
+        clienteController::getAll($conn);
     }
+    else  {
+        clienteController::getById($conn, $id);
+    }
+    
 }
 
-elseif ($_SERVER['REQUEST_METHOD'] === "POST"){
-    $data = json_decode( file_get_contents('php://input'), true);
-    ClientController::create($conn, $data);
-}
-
-elseif($_SERVER['REQUEST_METHOD'] == "PUT"){
+elseif ($_SERVER['REQUEST_METHOD'] === "POST") {
     $data = json_decode(file_get_contents('php://input'), true);
-    $id = $data['id'];
-    ClientController::update($conn, $id, $data);
+    clienteController::create($conn, $data);
 }
 
-elseif ($_SERVER['REQUEST_METHOD'] === "DELETE" ){
-    $id = $segment[2] ?? null;
-
-    if (isset($id)){
-        ClientController::delete($conn, $id);
-    }else{
-        jsonResponse(['message'=>"ID do adicional é obrigatório"], 400);
+elseif ($_SERVER['REQUEST_METHOD'] === "DELETE") {
+    $id = $segments[2] ?? null;
+    
+    if (isset($id)) {
+        clienteController::delete($conn, $id);
+    }
+    else {
+        jsonResponse([
+        "message" => 'Você não conseguiu excluir'
+        ], 400);
     }
 }
 
+elseif ($_SERVER['REQUEST_METHOD'] === "PUT") {
+    $data = json_decode(file_get_contents('php://input'), true);
+    $id = $data["id"];
 
-else{
+    clienteController::update($conn, $id, $data);
+    
+}
+
+else {
     jsonResponse([
-        'status'=>'erro',
-        'message'=>'Método não permitido'
+        "status" => 'erro',
+        "message" => 'Método não permitido'
     ], 405);
 }
+
 ?>
