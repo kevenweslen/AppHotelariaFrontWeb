@@ -40,7 +40,10 @@ export default function RoomCard(index) {
         
         <div class="card-body">
             <h5 class="card-title">Quarto solteiro</h5>
-            <p class="card-text">Descrição do quarto: A melhor indicação para pessoas que estão viajando e aproveitando a vida em seu proprio ritimo.Este quarto possui apenas uma cama de solteiro, possui 2 comodos quarto e banheiro com a melhor otimização de espaço possivel</p>
+            <p class="card-text">
+                A melhor indicação para pessoas que estão viajando e aproveitando a vida em seu proprio ritimo.
+                Este quarto possui apenas uma cama de solteiro, possui 2 comodos quarto e banheiro com a melhor otimização de espaço possivel para a experiencia dos nossos hóspedis.
+            </p>
             <a href="#" class="btn btn-primary">Reservar</a>
         </div>
     </div>
