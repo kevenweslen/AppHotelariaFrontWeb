@@ -9,7 +9,7 @@ require_once __DIR__ . "/controllers/pedidoController.php";
 require_once __DIR__ . "/controllers/quartoController.php";
 require_once __DIR__ . "/controller/reservaController.php";
 
-/*("quartos")*/
+/*("quartos")
 $data = [ 
     "nome" => "quarto normal",
     "numero" => 1,
@@ -19,9 +19,9 @@ $data = [
     "disponivel" => 1,
     "id"
 ];
+*/
 
-
-quartoControler::getAll($conn);
+//quartoControler::getAll($conn);
 //clientController::getAll($conn);
 //adicionalController::getAll($conn);
 //quartoControler::getAll($conn);
@@ -43,14 +43,13 @@ clientController::create($conn, $data);
 */
 
 
-/*("Adicionais")
-$data[
-    "nome" => "Seviço de quarto",
-    "preco" => 99.99,
-    "id"
-];
-adicionalController::getAll($conn);
-*/
+/*("Adicionais")*/
+//$data[
+//    "nome" => "Seviço de quarto",
+//    "preco" => 99.99
+//];
+//adicionalController::getAll($conn);
+//
 
 // $data = [
 //     "email" => "leo@gmail.com",

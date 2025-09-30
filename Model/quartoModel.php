@@ -55,7 +55,7 @@ class quartoModel {
     }
 
     public static function buscarDisponivel($conn) {
-
+        
     }
 }
 

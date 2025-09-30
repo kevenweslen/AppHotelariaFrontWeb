@@ -3,7 +3,7 @@ import Form from "../components/Form.js";
 import Navbar from "../components/Navbar.js";
 
 export default function renderLoginPage() { 
-    const nav = document.getElementById('navbar');
+const nav = document.getElementById('navbar');
     nav.innerHTML = '';
     
     const navbar = Navbar();
@@ -12,24 +12,25 @@ export default function renderLoginPage() {
     const formulario = Form();
     const contentForm = formulario.querySelector('form');
 
-    const imputEmail = contentForm.querySelector('imput[type="email"]');
-    const imputsenha = contentForm.querySelector('imput[type="senha"]');
-    // por quer isso não existe? const btn = contentForm.querySelector('button[type="submit]"');
+    //Inputs e botão presentes no form
+    const inputEmail = contentForm.querySelector('input[type="email"]');
+    const inputSenha = contentForm.querySelector('input[type="password"]');
 
-//monmitora o clique no botão para adicionar um evento de submeter os daods do form
-    contentForm.addEventListener('submit', async (e) => {
+    //Monitora o clique no botão para acionar um evento de submeter os dados do form
+    contentForm.addEventListener("submit", async (e) => {
         e.preventDefault();
-        const email = imputEmail.values.trim();
-        const senha = imputEmail.values.trim();
+        const email = inputEmail.value.trim();
+        const senha = inputSenha.value.trim();
 
-        try{
+        try {
             const result = await loginRequest(email, senha);
+    
             saveToken(result.token);
-            //window.location.pathname = "/home";
-        }catch{
-            console.log("Erro inesperado!!!     :(");
-    };
-
-});
+            //window.location.pathname = "/meusite/home";
+        }
+        catch {
+            console.log("Erro inesperado!");
+        }
+    });
 
 }
