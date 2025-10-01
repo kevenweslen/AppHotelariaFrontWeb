@@ -2,13 +2,18 @@
 require_once __DIR__ . "/../controllers/autenticador.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $data = json_decode(file_get_contents('php://input'), true);
-    AuthController::login($conn, $data);
-}
+    $opcao = $segments[2] ?? null;
+    $data = json_decode(file_get_content('php://input'),true);
 
-else {
-    jsonResponse([
-        "status"=>"Erro!",
-        "message"=>"Método não permitido!"], 405);
+    if ($opcao == "client"){//login cliente
+        AuthController::loginCliente($conn, $data);
+    }else if ($opcao == "user"){//login funcionario
+        AuthController::login($conn, $data);
+    }alse{
+        jsonResponse(['status'=>'erro', 'message'=>'Rota não existente'], 405);
+    }
+
+}elseif{
+    jsonResponse(['status'=>'erro', 'message'=>'Método não existente'], 405);
 }
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "/../models/quartoModel.php";
+require_once __DIR__ . "/../model/quartoModel.php";
 
 class quartoController{
     public static function create($conn, $data) {
@@ -14,13 +14,13 @@ class quartoController{
         }
     }
 
-    public static function getById($conn, $id) {
-        $result = quartoModel::getById($conn, $id);
+    public static function getAll($conn) {
+        $result = quartoModel::getAll($conn);
         return jsonResponse($result);
     }
 
-    public static function getAll($conn) {
-        $result = quartoModel::getAll($conn);
+    public static function getById($conn, $id) {
+        $result = quartoModel::getById($conn, $id);
         return jsonResponse($result);
     }
 

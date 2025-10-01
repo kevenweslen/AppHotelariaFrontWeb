@@ -2,53 +2,37 @@
 
 require_once __DIR__ . "/../controllers/clienteController.php";
 
-if ( $_SERVER['REQUEST_METHOD'] === "GET") {
+if ( $_SERVER['REQUEST_METHOD'] === "GET" ){
     $id = $segments[2] ?? null;
 
-    if (isset($id) === null) {
+    if ($id){
+        clienteController::getById($conn, $id);
+    }else{
         clienteController::getAll($conn);
     }
-    else  {
-        clienteController::getById($conn, $id);
-    }
-    
 }
-
-elseif ($_SERVER['REQUEST_METHOD'] === "POST") {
-    $data = json_decode(file_get_contents('php://input'), true);
+elseif ( $_SERVER['REQUEST_METHOD'] === "POST" ){
+    $data = json_decode( file_get_contents('php://input'), true );
     clienteController::create($conn, $data);
-} else {
-    jsonResponse([
-        "status"=>"erro",
-        "message"=>"metodo não permitido"
-    ],405);
 }
-
-elseif ($_SERVER['REQUEST_METHOD'] === "DELETE") {
-    $id = $segments[2] ?? null;
-    
-    if (isset($id)) {
-        clienteController::delete($conn, $id);
-    }
-    else {
-        jsonResponse([
-        "message" => 'Você não conseguiu excluir'
-        ], 400);
-    }
-}
-
-elseif ($_SERVER['REQUEST_METHOD'] === "PUT") {
-    $data = json_decode(file_get_contents('php://input'), true);
-    $id = $data["id"];
-
+elseif ( $_SERVER['REQUEST_METHOD'] === "PUT" ){
+    $data = json_decode( file_get_contents('php://input'), true );
+    $id = $data['id'];
     clienteController::update($conn, $id, $data);
-    
 }
-
-else {
+elseif ( $_SERVER['REQUEST_METHOD'] === "DELETE" ){
+    $data = json_decode( file_get_contents('php://input'), true );
+    $id = $data['id'];
+    if (isset($id)){
+        clienteController::delete($conn, $id);
+    }else{
+        jsonResponse(['message'=>"ID do item é obrigatório"], 400);
+    }
+}
+else{
     jsonResponse([
-        "status" => 'erro',
-        "message" => 'Método não permitido'
+        'status'=>'erro',
+        'message'=>'Método não permitido'
     ], 405);
 }
 

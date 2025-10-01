@@ -6,28 +6,43 @@ require_once __DIR__ . "/../controllers/validadorController.php";
 
 class clienteController{
     public static function create($conn, $data) {
-        //O que é esse calidate? tipo da para imaginar o que ele faz, mas de onde vem? ocho que eu nem tenho esse arquivo.
-        $validacao = ValidateController::AuthClient($data);
-        
-        if (!$validacao['sucesso']) {
-            return jsonResponse($validacao, 400);
-        }
 
+        $login = [
+            "email" => $data['email'],
+            "senha" => $data['senha']
+        ];
 
+        $data['senha'] = validadorController::generateHash($data['senha']);
         $result = clienteModel::create($conn, $data);
+        if($result){
+            // se o usuario estiver -> efetura o login
+            // para retornar o token JWT
+            autenticador::loginCliente($conn, $login);
+        }else{
+            return jsonResponse(['message'=>"erro ao criar o cliente"], 400);
+        }
+
+        // $validacao = validadorController::AuthClient($data);
         
-        if ($result) {
-            return jsonResponse([
-                'sucesso' => true,
-                'message'=>'Cliente registrado com sucesso"'
-            ]);
-        }
-        else {
-            return jsonResponse([
-                'sucesso' => false,
-                'message'=>'Erro ao registrar o cliente!'
-            ]);
-        }
+        // if (!$validacao['sucesso']) {
+        //     return jsonResponse($validacao, 400);
+        // }
+
+
+        // $result = clienteModel::create($conn, $data);
+        
+        // if ($result) {
+        //     return jsonResponse([
+        //         'sucesso' => true,
+        //         'message'=>'Cliente registrado com sucesso"'
+        //     ]);
+        // }
+        // else {
+        //     return jsonResponse([
+        //         'sucesso' => false,
+        //         'message'=>'Erro ao registrar o cliente!'
+        //     ]);
+        // }
     }
 
     public static function getById($conn, $id) {

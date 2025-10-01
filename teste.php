@@ -24,7 +24,7 @@ $data = [
 //quartoControler::getAll($conn);
 //clientController::getAll($conn);
 //adicionalController::getAll($conn);
-//quartoControler::getAll($conn);
+quartoControler::getAll($conn);
 //quartoControler::getAll($conn);
 
 
