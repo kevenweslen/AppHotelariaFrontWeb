@@ -1,5 +1,5 @@
 export async function loginRequest(email,senha) {
-    const dados = await fetch("/api/login", {
+    const dados = await fetch("api/login", {
         method: "POST",
         headers: {
             "Accept": "application/json",

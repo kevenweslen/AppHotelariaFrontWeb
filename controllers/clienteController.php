@@ -2,56 +2,39 @@
 
 require_once __DIR__ . "/../model/clienteModel.php";
 require_once __DIR__ . "/../controllers/validadorController.php";
+require_once __DIR__ . "/../controllers/senha.php";
+require_once __DIR__ . "/../controllers/autenticador.php";
+
 //no lugar deste require_once validateController eu deveria chamr o validador?
 
 class clienteController{
     public static function create($conn, $data) {
 
         $login = [
-            "email" => $data['email'],
-            "senha" => $data['senha']
+            "email"=> $data["email"],
+            "password"=> $data["senha"]
         ];
-
-        $data['senha'] = validadorController::generateHash($data['senha']);
+        $data['senha'] = senhaControler::geradorHash($data['senha']);
         $result = clienteModel::create($conn, $data);
-        if($result){
-            // se o usuario estiver -> efetura o login
-            // para retornar o token JWT
-            autenticador::loginCliente($conn, $login);
-        }else{
+        if ($result) {
+           Controlador::loginCliente($conn, $login);
+           
+            $token = criarToken($result);
+            return jsonResponse(['token'=> $token]);
+
+        } else {
             return jsonResponse(['message'=>"erro ao criar o cliente"], 400);
         }
+    }
+    
 
-        // $validacao = validadorController::AuthClient($data);
-        
-        // if (!$validacao['sucesso']) {
-        //     return jsonResponse($validacao, 400);
-        // }
-
-
-        // $result = clienteModel::create($conn, $data);
-        
-        // if ($result) {
-        //     return jsonResponse([
-        //         'sucesso' => true,
-        //         'message'=>'Cliente registrado com sucesso"'
-        //     ]);
-        // }
-        // else {
-        //     return jsonResponse([
-        //         'sucesso' => false,
-        //         'message'=>'Erro ao registrar o cliente!'
-        //     ]);
-        // }
+    public static function getAll($conn) {
+        $result = clienteModel::getAll($conn);
+        return jsonResponse($result);
     }
 
     public static function getById($conn, $id) {
         $result = clienteModel::getById($conn, $id);
-        return jsonResponse($result);
-    }
-
-    public static function getAll($conn) {
-        $result = clienteModel::getAll($conn);
         return jsonResponse($result);
     }
 

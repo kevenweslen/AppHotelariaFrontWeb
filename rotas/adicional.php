@@ -26,7 +26,7 @@ elseif ( $_SERVER['REQUEST_METHOD'] === "DELETE" ){
     if (isset($id)){
         adicionalController::delete($conn, $id);
     }else{
-        jsonResponse(['message'=>"ID do item é obrigatório"], 400);
+        jsonResponse(['message'=>"ID do item é obrigatório"], 405);
     }
 }
 else{

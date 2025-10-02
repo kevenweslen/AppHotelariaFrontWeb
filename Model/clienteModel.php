@@ -39,8 +39,8 @@ class clienteModel {
 
     public static function update($conn, $id, $data) {
         $sql = "UPDATE clientes SET nome = ?, email = ?, telefone = ?, cpf = ?, cargo_id = ?, senha = ? WHERE id = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ssssisi",
+        $stat = $conn->prepare($sql);
+        $stat->bind_param("ssssisi",
             $data["nome"],
             $data["cpf"],
             $data["email"],
@@ -61,7 +61,7 @@ class clienteModel {
  
         if($client = $result->fetch_assoc()) {
         
-            if(senha::leitorHash($password, $client['senha'])) {
+            if(senhaControler::leitorHash($password, $client['senha'])) {
                 unset($client['senha']);
                 return $client;  
             }

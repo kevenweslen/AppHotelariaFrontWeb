@@ -3,7 +3,7 @@
 
 class validadorController {
 
-    public static function validate_data($data, $labels){
+    public static function validador_data($data, $labels){
         $pendets = [];
         foreach ($labels as $lbl){
             if (!isset($data[$lbl]) && empty($data[$lbl]) ){
@@ -130,7 +130,7 @@ class validadorController {
     //     }
     //     return true;
     // }
-}
+// }
 
 
 ?>

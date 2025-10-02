@@ -36,21 +36,21 @@ class Controlador{
 
     public static function loginCliente($conn, $data){
         $data['email'] = trim($data['email']);
-        $data['senha'] = trim($data['senha']);
+        $data['password'] = trim($data['password']);
 
         //confirma se tem algum campo vazio
-        if(empty($data['email']) || empty($data['senha'])){
+        if(empty($data['email']) || empty($data['password'])){
             return jsonResponse([
                 "status"=>"ERRO",
                 "mensagem"=>"Preencha todos os campos"
             ],401);
         }
     
-        $user = clienteModel::validadorCliente($conn, $data['email'], $data['senha']);
+        $user = clienteModel::validadorCliente($conn, $data['email'], $data['password']);
         if ($user){
+            
             $token = criarToken($user);
-
-
+            
             return jsonResponse (["token" => $token]);
 
         }else{
