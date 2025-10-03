@@ -21,7 +21,7 @@ class pedidoModel {
         VALUES (?, ?, ?);";
         
         $stat = $conn->prepare($sql);
-        $stat->bind_param("iis", 
+        $stat->bind_param("iii", 
             $data["usuario_id"],
             $data["cliente_id"],
             $data["pagamento"]

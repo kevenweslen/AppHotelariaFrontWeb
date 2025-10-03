@@ -41,6 +41,20 @@ class quartoController{
             return jsonResponse(['message'=> 'Deu merda'], 400);
         }
     }
+
+    public static function get_available($conn, $data){
+        validatorController::validate_data($data, ["inicio", "fim", "qtd"]);
+
+        $data["inicio"] = validatorController::fix_dateHour($data["inicio"], 14);
+        $data["fim"] = validatorController::fix_dateHour($data["fim"], 12);
+        
+        $result = RoomModel::get_available($conn, $data);
+        if($result){
+            return jsonResponse(['Quartos'=> $result]);
+        }else{
+            return jsonResponse(['message'=> 'não tem quartos disponiveis'], 400);
+        }
+    }
 }
 
 ?>

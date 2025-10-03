@@ -54,9 +54,24 @@ class quartoModel {
         return $stmt->execute();
     }
 
-    public static function buscarDisponivel($conn) {
-        
+    public static function get_available($conn,$data){
+        $sql = "SELECT *
+        FROM quartos q
+        WHERE  q.disponivel = true
+        AND ((q.qtd_cama_casal * 2) + q.qtd_cama_solteiro) >= ?
+        AND q.id NOT IN (
+            SELECT r.quarto_id
+            FROM reservas r
+            WHERE (r.data_fim >= ? AND r.data_inicio <= ?))";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("iss",
+            $data['disponivel'],// aqui estava "qtd" mas eu acho que eu devo substituir pelo disponivel. È o que esta no meu banco, talzes isso seja o serto, pois não sei como esta no banco dos professores.
+            $data['inicio'],
+            $data['fim']);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
+
 }
 
 ?>

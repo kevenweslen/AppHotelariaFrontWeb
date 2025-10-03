@@ -1,7 +1,7 @@
 <?php
 
-require_once "validadorController.php"
-require_once __DIR__ . "/../models/ReservaModel.php";
+require_once "validadorController.php";
+require_once __DIR__ . "/../models/reservaModel.php";
 
 class reservaController{
 

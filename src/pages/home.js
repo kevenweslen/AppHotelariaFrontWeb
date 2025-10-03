@@ -21,6 +21,20 @@ export default function renderHomePage() {
     const dataSelector = DateSelector();
     divRoot.appendChild(dataSelector);
 
+    const btnSearchRoom = dateselector.querySelector('button');
+    btnSearchRoom.addEventListener("click", async (e) => {
+        e.preventDefaolt();
+        const inicio = "???????"; //ainda não tenho, mas tem que ser uma reserva ixistente
+        const fim = "??????";
+        const disponivel = 2
+        
+    try{
+        const quarto = listAvaliableRoomsRequest({inicio, fim, disponivel})
+    }catch(error){
+        console.log(error);
+    }
+    });
+
     //Grupo para incorporar cada div de cada card, para aplicar display-flex
     const cardsGroup = document.createElement('div');
     cardsGroup.className = "cards";

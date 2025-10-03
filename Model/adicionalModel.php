@@ -27,7 +27,7 @@ class adicionalModel {
         return $stmt->get_result()->fetch_assoc();
     }
 
-        public static function delete($conn, $id) {
+     public static function delete($conn, $id) {
         $sql = "DELETE FROM adicionais WHERE id= ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $id);
