@@ -1,43 +1,45 @@
-export async function loginRequest(email,senha) {
-    const dados = await fetch("api/login", {
+
+export async function loginRequest(email, senha) {
+    const dados = {email, password: senha};
+    const response = await fetch("api/login/client", {
         method: "POST",
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json"
         },
-
+        
         body: JSON.stringify(dados),
-        /* body: new URLSearchParams({ "email":email, "password":senha }).toString(), */ 
 
-        /*URL da requisisão é a mesma da prigem do front (mesmo protocolo fttp/
-        mesmo domínio - local/mesma porta 80 do servidor wec Apache).
-        front: http://localhost/meu-site/public/index.html
-        back: http://localhost/meu-site/api/login.php*/
-
+        /* URL da requisição é a mesma da origem do front (mesmo protocolo http/
+        mesmo domínio - local/mesma porta 80 do servidor web Apache) 
+        Front: http://localhost/meusite/public/index.html
+        Back: http://localhost/meusite/api/login.php
+        */
         credentials: "same-origin"
     });
 
-    //Interpreta a resposta do json
-    let data =null;
+    // Interpreta a resposta como JSON
+    let data = null;
     try {
         data = await response.json();
-    }catch{
-        //se não for json válido, data permanece null
+    }
+    catch {
+        // Se não for JSON válido, data permanece null
         data = null;
     }
-    if(!data || !data.token){
-        const message = "Resposta invalida do servidor. Token inválido";
+
+    if (!data || !data.token) {
+        const message = "Resposta inválida do servidor. Token ausente";
         return {ok: false, token: null, raw: data, message};
     }
 
     return {
         ok: true,
-        user: data.user ?? null,
+        token: data.token,
         raw: data
-    }
+    };
 }
-
-/*Função para salvar a chave token após autenticação confirmada,
+    /*Função para salvar a chave token após autenticação confirmada,
     ao salvar no local storage, o usuário poderá mudar de página, fechar o
     site e ainda assim permanecer logado, DESDE QUE TEMPO NÃO TENHA EXPIRADO (1h)*/
     export function saveToken(token) {

@@ -16,12 +16,12 @@ export default function DateSelector(){
     dateAmount.innerHTML = 
     `
     <option value="">quantas pessoas?</option>
-    <option value="1">1 pessoas</option>
+    <option value="1">1 pessoa</option>
     <option value="2">2 pessoas</option>
     <option value="3">3 pessoas</option>
     <option value="4">4 pessoas</option>
     <option value="5">5 pessoas ou mais</option>
-    `;
+    `
 
     const btnSearchRoom = document.createElement('button');
     btnSearchRoom.type = 'submit';
