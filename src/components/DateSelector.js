@@ -26,12 +26,12 @@ export default function DateSelector(){
     const btnSearchRoom = document.createElement('button');
     btnSearchRoom.type = 'submit';
     btnSearchRoom.textContent = 'Pesquisar';
-    btnSearchRoom.className = 'btn btn-primary'
+    btnSearchRoom.className = 'btn btn-primary';
     divDate.appendChild(dateCheciIn);
     divDate.appendChild(dateCheciOut);
     divDate.appendChild(dateAmount);
     divDate.appendChild(btnSearchRoom);
 
-    return divDate
+    return divDate;
 
 }

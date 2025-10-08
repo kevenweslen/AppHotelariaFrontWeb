@@ -61,6 +61,11 @@ export default function renderRegisterPage() {
         "child" do elemento pai form
     */
     contentForm.insertBefore(confSenha, contentForm.children[5]);
+
+        const btnRegister = formulario.querySelector('button');
+        btnRegister.textContent = "Criar conta";
+
+
         contentForm.addEventListener("submit",async (e) =>{
             e.preventDefault();
             const nome = inputnome.value.trim();
@@ -75,11 +80,4 @@ export default function renderRegisterPage() {
                 conlose.log("Erro inesperado!");
             }
         });
-
-
-
-    const btnRegister = formulario.querySelector('button');
-    btnRegister.textContent = "Criar conta";
-
-
 }
