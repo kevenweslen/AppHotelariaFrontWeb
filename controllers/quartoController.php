@@ -48,7 +48,7 @@ class quartoController{
         $data["inicio"] = validatorController::fix_dateHour($data["inicio"], 14);
         $data["fim"] = validatorController::fix_dateHour($data["fim"], 12);
         
-        $result = RoomModel::get_available($conn, $data);
+        $result = quartoModel::get_available($conn, $data);
         if($result){
             return jsonResponse(['Quartos'=> $result]);
         }else{

@@ -55,9 +55,11 @@ export default function RoomCard(itemCard, index = 0) {
         </div>
         
         <div class="card-body">
-            <h5 class="card-title"></h5>
+            <h5 class="card-title">${title}</h5>
             <p class="card-text">Descrição do quarto: Lorem ipsum dolor sit amet consectetur
              adipisicing elit. Officia, harum libero, ratione, nostrum iusto dicta.</p>
+             ${camas? `<li>${camas}` : ""}
+             ${preco != null ? `<li>preco: R$ ${numero(preco).toFixed(2)}</li>` : ""}
             <a href="#" class="btn btn-primary">Reservar</a>
         </div>
     </div>

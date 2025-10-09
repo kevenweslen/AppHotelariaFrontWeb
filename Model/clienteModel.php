@@ -39,8 +39,8 @@ class clienteModel {
 
     public static function update($conn, $id, $data) {
         $sql = "UPDATE clientes SET nome = ?, email = ?, telefone = ?, cpf = ?, cargo_id = ?, senha = ? WHERE id = ?";
-        $stat = $conn->prepare($sql);
-        $stat->bind_param("ssssisi",
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ssssisi",
             $data["nome"],
             $data["cpf"],
             $data["email"],
