@@ -52,14 +52,6 @@ export default function renderRegisterPage() {
     const confSenha = document.createElement('input');
     confSenha.type = 'password';
     confSenha.placeholder = "Confirme sua senha";
-
-    /*  
-        Adicionar confSenha como "child" de form que já contém
-        4 elementos: input nome[0] recém adicionado, input email[1],
-        input password[2], button btn[3], ao adicionar confSenha antes de btn[3],
-        portanto utilizar insertBefore() e identificar a posição de btn[3] como uma
-        "child" do elemento pai form
-    */
     contentForm.insertBefore(confSenha, contentForm.children[5]);
 
         const btnRegister = formulario.querySelector('button');
@@ -76,6 +68,8 @@ export default function renderRegisterPage() {
         
             try {
                 const result = createRequeste(nome, email, telefone, cpf, senha);
+            
+            
             }catch {
                 conlose.log("Erro inesperado!");
             }

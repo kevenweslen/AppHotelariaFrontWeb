@@ -3,33 +3,38 @@
     referente às tarefas 1, 2 e 4 abaixo
   - Criar um componente Spinner.js e inicializá-lo na página home.js referente à tarefa 3*/
 
-import { listAvailableRoomsRequest } from "../api/roomsAPI.js";
+import {listAvailableRoomsRequest} from "../api/quartoAPI.js";
 import DateSelector from "../components/DateSelector.js";
 import Hero from "../components/Hero.js";
 import Navbar from "../components/Navbar.js";
 import RoomCard from "../components/RoomCard.js";
 
 
-export default function renderHomePage() { 
-
-    //navBar
+export default function renderHomePage() {
+    //Navbar
     const nav = document.getElementById('navbar');
     nav.innerHTML = '';
     const navbar = Navbar();
     nav.appendChild(navbar);
 
     //Root (corpo da página)
-    const divRoot = document.getElementById("root");
+    const divRoot = document.getElementById('root');
     divRoot.innerHTML = '';
 
-    const containerHero = Hero();
-    divRoot.appendChild(containerHero);
+    const hero = Hero();
+    divRoot.appendChild(hero);
 
-    const dataSelector = DateSelector();
-    divRoot.appendChild(dataSelector);
+    const dateSelector = DateSelector();
+    divRoot.appendChild(dateSelector);
+
+    const dateToday = new Date().toISOString.split("T")[0];
+    console.log(dateToday);
 
     const [dateCheciIn, dateCheciOut] = dateselector.querySelectorAll('input[type="date"]');
-    const guestAmount = dateSelector.querySelector('select');
+    dateCheciIn.min = dateToday
+    dateCheciOut.min = dateToday
+
+    const guestAmount  = dateSelector.querySelector('select');
     const btnSearchRoom = dateselector.querySelector('button');
 
 
@@ -38,14 +43,35 @@ export default function renderHomePage() {
     cardsGroup.className = "cards";
     cardsGroup.id = "card-result";
 
+    const loungeItems = [
+        {path: "restaurante.jpg", title:
+            "Restaurante", text: "Nosso restaurante"
+             + " é um espaço agradável e familiar!"},
+
+        {path: "spa.jpg", title: "SPA",
+             text: "Nosso SPA é ideal para"
+             + " momentos de relaxamento!"},
+
+        {path: "bar.jpg", title: "Bar",
+             text: "Nosso bar oferece"
+             + " drinks sem metanol, confia!"}
+    ];
+
+        /*Percorre a array loungeItems*/
+    for (let i = 0; i < loungeItems.length; i++) {
+         const cardLounge = CardLounge(loungeItems[i], i);
+         cardsGroup.appendChild(cardLounge);
+    }
+
     btnSearchRoom.addEventListener("click", async (e) => {
         e.preventDefaolt();
+
         const inicio = (dateCheciIn?.value || "").trim(); //ainda não tenho, mas tem que ser uma reserva ixistente
         const fim = (dateCheciOut?.value || "").trim();
-        const qtd = parseInt(dateAmount?.value || "0", 10);
+        const qtd = parseInt(guestAmount?.value || "0", 10);
         
         if(!inicio || fim || Number.isNaN(qtd) || qtd <= 0) {
-            console.log("preencha todos os campos!! >:)")
+            console.log("preencha todos os campos!! >:(")
 /*tarefa 1: Renderizar nesse if() posteriormente um modal do bootstrap!
             https://getbootstrap.com/docs/5.3/components/modal/*/
         return;
@@ -61,7 +87,7 @@ https://getbootstrap.com/docs/5.3/components/modal/ */
             return;
         }
 
-        console.log("buscando quartos disponiveis");
+        console.log("buscando quartos disponiveis...");
 /* Tarefa 3: Renderizar na tela um símbolo de loading (spinner do bootstrap)!
 https://getbootstrap.com/docs/5.3/components/spinners/ */
 
@@ -74,20 +100,13 @@ https://getbootstrap.com/docs/5.3/components/spinners/ */
         return;
         }
         cardsGroup.innerHTML = '';
-        result.forEach((utemCard, i) => {
+        result.forEach((itemCard, i) => {
             cardsGroup.appendChild(RoomCard(itemCard, i));
         });
     }catch(error){
         console.log(error);
     }
     });
-
-
-    
-    for (var i=0; i < 3; i++) {
-    const cards = RoomCard(i);
-    cardsGroup.appendChild(cards); 
-    }
 
     divRoot.appendChild(cardsGroup);    
 

@@ -1,6 +1,6 @@
 <?php
 require_once "validadorController.php";
-require_once __DIR__ . "/../models/reservaModel.php";
+require_once __DIR__ . "/../model/reservaModel.php";
 
 class reservaController{
 

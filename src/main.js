@@ -1,7 +1,8 @@
+import renderCarPage from "./pages/car.js";
+import renderHomePage from "./pages/home.js";
 import renderLoginPage from "./pages/login.js";
 import renderRegisterPage from "./pages/register.js";
-import renderHomePage from "./pages/home.js";
-import renderCarPage from "./pages/car.js";
+
 
 //Configuraçao de rotas mapeadas
 const routes = {

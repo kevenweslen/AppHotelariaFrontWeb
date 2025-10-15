@@ -7,7 +7,7 @@ require_once __DIR__ . "/controllers/adicionalController.php";
 require_once __DIR__ . "/controllers/clienteController.php";
 require_once __DIR__ . "/controllers/pedidoController.php";
 require_once __DIR__ . "/controllers/quartoController.php";
-require_once __DIR__ . "/controller/reservaController.php";
+require_once __DIR__ . "/controllers/reservaController.php";
 
 /*("quartos")
 $data = [ 

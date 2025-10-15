@@ -43,10 +43,10 @@ class quartoController{
     }
 
     public static function get_available($conn, $data){
-        validatorController::validate_data($data, ["inicio", "fim", "qtd"]);
+        validadorController::validate_data($data, ["inicio", "fim", "qtd"]);
 
-        $data["inicio"] = validatorController::fix_dateHour($data["inicio"], 14);
-        $data["fim"] = validatorController::fix_dateHour($data["fim"], 12);
+        $data["inicio"] = validadorController::fix_dateHour($data["inicio"], 14);
+        $data["fim"] = validadorController::fix_dateHour($data["fim"], 12);
         
         $result = quartoModel::get_available($conn, $data);
         if($result){
