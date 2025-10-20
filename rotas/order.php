@@ -1,17 +1,29 @@
 <?php
-    require_once __DIR__ . "/../controllers/orderController.php";
+require_once __DIR__ . "/../controllers/orderController.php";
+
+if ($_SERVER['REQUEST_METHOD'] === "GET") {
+    $id = $segments[2] ?? null;
  
-if ($_SERVER['REQUEST_METHOD'] === "POST") {
-    $option =  $segments[2] ?? null;
+    if (isset($id)) {
+        orderController::getById($conn, $id);
+    } else {
+        orderController::getAll($conn, $data);
+    }
+}
+
+elseif ($_SERVER['REQUEST_METHOD'] === "POST") {
+    $opcao = $segments[2] ?? null;
     $data = json_decode(file_get_contents('php://input'), true);
-    if ($option == "reservation"){
-           orderController::createOrder($conn, $data);
+
+    if ($opcao == "reservation"){
+        orderController::createOrder($conn, $data);
     }else{
         orderController::create($conn, $data);
     }
-    
-} else {
-    return jsonResponse(['message' => 'Metodo não Permitido'], 400);
 }
- 
+
+else{
+    jsonResponse(['status'=>'erro','message'=>'Método não permitido'], 405);
+}
+
 ?>
