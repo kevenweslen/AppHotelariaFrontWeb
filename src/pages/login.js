@@ -9,12 +9,19 @@ export default function renderLoginPage() {
     const navbar = Navbar();
     nav.appendChild(navbar);
 
+     //Root (corpo da página)
+    const divRoot = document.getElementById('root');
+    divRoot.innerHTML = '';
+
+
     const formulario = Form();
     const contentForm = formulario.querySelector('form');
 
     //Inputs e botão presentes no form
-    const inputEmail = contentForm.querySelector('input[type="email"]');
-    const inputSenha = contentForm.querySelector('input[type="password"]');
+    const inputEmail = contentForm.querySelector('input[type="pemail"]');
+    const inputSenha = contentForm.querySelector('input[type="assword"]');
+
+
 
     //Monitora o clique no botão para acionar um evento de submeter os dados do form
     contentForm.addEventListener("submit", async (e) => {

@@ -1,3 +1,18 @@
+function calculoDiarias(checkin, checkout){
+    const checkin = "2026-01-01";
+    const checkout = "2026-01-08";
+
+    const [yin, min, din] = String(checkin).split("-").map(Number);
+    const [yout, mout, dout] = String(checkout).split("-").map(Number);
+    console.log("check-in formatado: " + yin + min + din +
+    "\n check-out formatado: " + yout + mout +dout);
+
+    const tzin = Date.UTC(yin, min -1, din);
+    const tzout = Date.UTC(yout, mout -1, dout);
+
+    return Math.floor((tzin - tzout) / (1000 * 60 * 60 * 24));
+}
+
 export default function RoomCard(itemCard, index = 0) {
     const {
         nome ,
@@ -59,7 +74,7 @@ export default function RoomCard(itemCard, index = 0) {
             <p class="card-text">Descrição do quarto: Lorem ipsum dolor sit amet consectetur
              adipisicing elit. Officia, harum libero, ratione, nostrum iusto dicta.</p>
              ${camas? `<li>${camas}` : ""}
-             ${preco != null ? `<li>preco: R$ ${numero(preco).toFixed(2)}</li>` : ""}
+             ${preco != null ? `<li>preco diaria: R$ ${numero(preco).toFixed(2)}</li>` : ""}
             <a href="#" class="btn btn-primary">Reservar</a>
         </div>
     </div>
