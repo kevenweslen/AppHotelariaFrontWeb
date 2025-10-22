@@ -29,7 +29,10 @@ class quartoModel {
             $data["preco"],
             $data['disponivel']
         );
-        return $stat->execute();
+                if($stat->execute()){
+            return  $conn->insert_id;
+        }
+        return false;
     }
 
     public static function update($conn, $id, $data) {
