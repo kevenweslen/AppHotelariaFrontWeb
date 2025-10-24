@@ -2,8 +2,8 @@
 
 require_once __DIR__ . "/../model/quartoModel.php";
 require_once __DIR__ . "/../Model/fotoModel.php";
-require_once __DIR__ . "validadorController.php";
-require_once __DIR__ . "uploadController.php";
+require_once __DIR__ . "/validadorController.php";
+require_once __DIR__ . "/uploadController.php";
 
 class quartoController{
     public static function create($conn, $data) {
@@ -13,9 +13,9 @@ class quartoController{
             if($data['fotos']){
                 $fotos = uploadController::upload($data['fotos']);
                 foreach($fotos['saves'] as $name){
-                    $idPhoto = fotoModel::create($conn, $name);
+                    $idPhoto = fotoModel::create($conn, $name['name']);
                     if ($idPhoto){
-                        fotoModel::createRelationalRoom($conn, $result, $idPhoto)
+                        fotoModel::createRelationRoom($conn, $result, $idPhoto);
                     }
                 }
             }
@@ -62,6 +62,9 @@ class quartoController{
         
         $result = quartoModel::get_available($conn, $data);
         if($result){
+            foreach($result as &$quarto){
+                $quarto['fotos'] = fotoModel::getByRoomId($conn, $quarto['id']);
+            }
             return jsonResponse(['Quartos'=> $result]);
         }else{
             return jsonResponse(['message'=> 'não tem quartos disponiveis'], 400);

@@ -1,6 +1,6 @@
 <?php
 
-class adicionalModel {
+class fotoModel {
 
     public static function create($conn, $name) {
         $sql = "INSERT INTO fotos (nome) VALUES (?)";

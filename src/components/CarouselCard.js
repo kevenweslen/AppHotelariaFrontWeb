@@ -14,15 +14,15 @@ export default function CarouselCard(){
       <div class="carousel-inner shadow">
 
         <div class="carousel-item active">
-            <img src="public/assets/images/backgond_hero0.jpg" class="d-block w-100" alt="...">
+            <img src="public/assets/images/imagemCard1.jpg" class="d-block w-100" alt="...">
         </div>
 
         <div class="carousel-item">
-            <img src="public/assets/images/backgond_hero1.jpg" class="d-block w-100" alt="...">
+            <img src="public/assets/images/imagemCard2.jpg" class="d-block w-100" alt="...">
         </div>
 
         <div class="carousel-item">
-            <img src="public/assets/images/backgond_hero2.jpg" class="d-block w-100" alt="...">
+            <img src="public/assets/images/imagemCard3.jpg" class="d-block w-100" alt="...">
         </div>
 
       </div>

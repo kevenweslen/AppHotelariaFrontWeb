@@ -28,7 +28,7 @@ if ( $_SERVER['REQUEST_METHOD'] === "GET") {
 
 elseif ($_SERVER['REQUEST_METHOD'] === "POST") {
     $data = $_POST;
-    $data = ['fotos'] = $_f;
+    $data ['fotos'] = $_FILES['fotos'] ?? null;
     quartoController::create($conn, $data);
 }
 

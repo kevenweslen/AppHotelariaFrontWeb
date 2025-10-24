@@ -8,6 +8,7 @@ import DateSelector from "../components/DateSelector.js";
 import Hero from "../components/Hero.js";
 import Navbar from "../components/Navbar.js";
 import RoomCard from "../components/RoomCard.js";
+import CardLounge from "../components/CardLounge.js";
 
 
 export default function renderHomePage() {
@@ -27,15 +28,15 @@ export default function renderHomePage() {
     const dateSelector = DateSelector();
     divRoot.appendChild(dateSelector);
 
-    const dateToday = new Date().toISOString.split("T")[0];
+    const dateToday = new Date().toISOString().split("T")[0];
     console.log(dateToday);
 
-    const [dateCheciIn, dateCheciOut] = dateselector.querySelectorAll('input[type="date"]');
+    const [dateCheciIn, dateCheciOut] = dateSelector.querySelectorAll('input[type="date"]');
     dateCheciIn.min = dateToday
     dateCheciOut.min = dateToday
 
     const guestAmount  = dateSelector.querySelector('select');
-    const btnSearchRoom = dateselector.querySelector('button');
+    const btnSearchRoom = dateSelector.querySelector('button');
 
 
     //Grupo para incorporar cada div de cada card, para aplicar display-flex
@@ -60,7 +61,7 @@ export default function renderHomePage() {
         /*Percorre a array loungeItems*/
     for (let i = 0; i < loungeItems.length; i++) {
          const cardLounge = CardLounge(loungeItems[i], i);
-         cardsGroup.appendChild(cardLounge);
+        cardsGroup.appendChild(cardLounge);
     }
 
     btnSearchRoom.addEventListener("click", async (e) => {
