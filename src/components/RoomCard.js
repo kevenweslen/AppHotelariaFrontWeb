@@ -12,6 +12,31 @@
 // 
     // return Math.floor((tzin - tzout) / (1000 * 60 * 60 * 24));
 // }
+function calculoDiaria(checkIn, checkOut) {
+
+    /* Feito para teste:
+
+        const checkIn = "2026-01-01";
+
+        const checkOut = "2026-01-08"; */
+
+    const [yin, min, din] = String(checkIn).split("-").map(Number);
+
+    const [yout, mout, dout] = String(checkOut).split("-").map(Number);
+ 
+    const tzin = Date.UTC(yin, min -1, din);
+
+    const tzout = Date.UTC(yout, mout -1, dout);
+ 
+    console.log("Milissegundos desde 1970-01-01 00:00:00 " +
+
+        tzin);
+ 
+    return Math.floor((tzout - tzin) / (1000 * 60 * 60 * 24));
+
+}
+
+ 
 
 export default function RoomCard(itemCard, index = 0) {
     const {
@@ -75,10 +100,46 @@ export default function RoomCard(itemCard, index = 0) {
              adipisicing elit. Officia, harum libero, ratione, nostrum iusto dicta.</p>
              ${camas? `<li>${camas}` : ""}
              ${preco != null ? `<li>preco diaria: R$ ${numero(preco).toFixed(2)}</li>` : ""}
-            <a href="#" class="btn btn-primary">Reservar</a>
+            <a href="#" class="btn btn-primary btn-reservar">Reservar</a>
         </div>
     </div>
 
     `;
+
+    card.querySelector(".btn-reservar").addEventListener('click', (e) => {
+        e.preventDefault();
+    // dateCheciIn.ID = 'id-dateCheckIn';
+    // dateCheciOut.ID = 'id-dateCheckOut';
+    // guestAmount.ID = 'id-guestAmount';
+    const iddateCheckIn = document.getElementById("id-dateCheckIn");
+    const iddateCheckOut = document.getElementById("id-dateCheckOut");
+    const idguestAmount = document.getElementById("id-guestAmount");
+
+    const inicio = (iddateCheckIn?.value || "");
+    const fim = (iddateCheckOut?.value || "");
+    const qtd = parseInt(idguestAmount?.value || "0", 10);
+
+    if(!inicio || !fim || Number.isNaN(qtd) || qtd <= 0){
+        console.log("preencha todos os campos!");
+        return;
+    }
+    const daily = calculoDiaria(inicio, fim);
+
+    const subTotal = parseFloat(preco) * daily;
+
+    const novoItemReserva = {
+        id, 
+        checkIn: inicio,
+        checkOut: fim,
+        guests: qtd,
+        daily,
+        subTotal,
+    }
+    addItemToHotel_Cart(novoItemReserva);
+    alert(`Reserva adicionada: ${nome} - numero de diarias: ${daily} - preco: ${preco} - subtotal: R$ ${subtotal}`);
     return card;
+});
+
+
+
 }

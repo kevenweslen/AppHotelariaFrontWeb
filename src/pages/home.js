@@ -36,6 +36,10 @@ export default function renderHomePage() {
     dateCheciOut.min = dateToday
 
     const guestAmount  = dateSelector.querySelector('select');
+    dateCheciIn.ID = 'id-dateCheckIn';
+    dateCheciOut.ID = 'id-dateCheckOut';
+    guestAmount.ID = 'id-guestAmount';
+
     const btnSearchRoom = dateSelector.querySelector('button');
 
 

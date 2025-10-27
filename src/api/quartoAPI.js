@@ -1,10 +1,10 @@
 export async function addRoom(contentForm){
     const formData = new FormData(contentForm);
-    const tipos = ['image/jpeg', 'image/png'];
+    const typeAccept = ['image/jpeg', 'image/png'];
     const inputFotos = contentForm.querrySelector('#formFileMultple');
 
     const imgs = inputFotos.files;
-    for(let i = 0; i < imgs.length; i++);{
+    for(let i = 0; i < imgs.length; i++){
         if(!typeAccept.includes(imgs[i].type)){
             throw new Error(`Tipo de arquivo não suportado. Selecione um arquivo png ou jprg.`);
         }
@@ -14,10 +14,18 @@ export async function addRoom(contentForm){
         method: "POST",
         body: formData 
     });
+    // Interpreta a resposta como JSON
+    let result = null;
+    try {
+        result = await response.json();
+    }    catch {
+        // Se não for JSON válido, result permanece null
+        result = null;
+    }
+
     if(!response.ok){
         throw new Error(`Erro ao enviar requisição: ${response.status}`);
     }
-    const result = await response.json();
     return result;
 }
 
@@ -29,7 +37,7 @@ export async function listAvailableRoomsRequest({ inicio, fim, qtd }) {
     if (fim) params.set("fim", fim);
     if (qtd !== null && qtd !== "") params.set("qtd", String(qtd));
 
-    const url = `api/rooms/disponiveis?${params.toString()}`;
+    const url = `api/quarto/disponiveis?${params.toString()}`;
     const response = await fetch(url, {
         method: "GET",
         headers: {
