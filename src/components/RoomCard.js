@@ -12,6 +12,9 @@
 // 
     // return Math.floor((tzin - tzout) / (1000 * 60 * 60 * 24));
 // }
+
+import {addItemToHotel_Cart} from "../store/cartStore.js";
+
 function calculoDiaria(checkIn, checkOut) {
 
     /* Feito para teste:

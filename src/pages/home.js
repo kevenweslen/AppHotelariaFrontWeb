@@ -69,7 +69,7 @@ export default function renderHomePage() {
     }
 
     btnSearchRoom.addEventListener("click", async (e) => {
-        e.preventDefaolt();
+        e.preventDefault();
 
         const inicio = (dateCheciIn?.value || "").trim(); //ainda não tenho, mas tem que ser uma reserva ixistente
         const fim = (dateCheciOut?.value || "").trim();

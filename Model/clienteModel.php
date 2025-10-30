@@ -53,7 +53,11 @@ class clienteModel {
     }
 
     public static function validadorCliente($conn, $email, $password) {
-        $sql = "SELECT clientes.id, clientes.nome, clientes.email, clientes.senha FROM clientes WHERE clientes.email = ?";
+        $sql = "SELECT clientes.id, clientes.nome, clientes.email, clientes.senha, cargos.nome AS cargo
+        FROM clientes
+        JOIN cargos ON cargos.id = clientes.cargo_id
+        WHERE clientes.email = ?";
+ 
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $email);
         $stmt->execute();
@@ -63,7 +67,7 @@ class clienteModel {
         
             if(senhaControler::leitorHash($password, $client['senha'])) {
                 unset($client['senha']);
-                return $client;  
+                return $client;
             }
 
         return false;

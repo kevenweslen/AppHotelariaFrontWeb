@@ -3,7 +3,7 @@ require_once __DIR__ . "/../controllers/autenticador.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $opcao = $segments[2] ?? null;
-    $data = json_decode(file_get_content('php://input'),true);
+    $data = json_decode(file_get_contents('php://input'), true);
 
     if ($opcao == "client"){//login cliente
         Controlador::loginCliente($conn, $data);
@@ -16,7 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 elseif($_SERVER['REQUEST_METHOD'] === 'PUT'){
-    validateTokenAPI();
     jsonResponse(["message"=>$headers], 200);
 }
 else{

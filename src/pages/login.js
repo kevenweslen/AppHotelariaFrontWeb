@@ -33,7 +33,7 @@ export default function renderLoginPage() {
             const result = await loginRequest(email, senha);
     
             saveToken(result.token);
-            //window.location.pathname = "/meusite/home";
+            window.location.pathname = "/meusite/home";
         }
         catch {
             console.log("Erro inesperado!");

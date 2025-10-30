@@ -1,6 +1,6 @@
 import Form from "../components/Form.js";
 import Navbar from "../components/Navbar.js";
-import {addRoom} from "../components/quartoAPI.js";
+import {addRoom} from "../api/quartoAPI.js";
 
 
 export default function renderCadQuarto() {
@@ -22,6 +22,9 @@ export default function renderCadQuarto() {
         imputNome.type = 'text';
         imputNome.placeholder = "digite o nome do quarto";
         imputNome.name = 'nome';
+        imputNome.className = 'imputNomeQuarto';
+
+        
 
     const imputNumero = contentForm.querySelector('input[type=password]');
         imputNumero.type = 'text';

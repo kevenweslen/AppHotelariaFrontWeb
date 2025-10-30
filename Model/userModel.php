@@ -18,51 +18,21 @@ class userModel{
         return false;
     }
 
-    public static function create($conn, $data) {
-        $sql = "INSERT INTO usuarios (nome, email, senha, cargo_id) VALUES (?, ?, ?, ?)";
-        
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssi",
-            $data["nome"],
-            $data["email"],
-            $data["senha"],
-            $data["cargo_id"]
-        );
-        return $stmt->execute();
-    }
 
-    public static function update($conn, $id, $data) {
-        $sql = "UPDATE usuarios SET nome = ?, email = ?, senha = ?, cargo_id = ? WHERE id = ?";
+    public static function validadorUser($conn, $email, $password) {
+        $sql = "SELECT usuarios.id, usuarios.nome, usuarios.senha, cargo.nome AS cargo  FROM usuarios WHERE usuarios.email = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssii",
-            $data["nome"],
-            $data["email"],
-            $data["senha"],
-            $data["cargo_id"],
-            $id
-        );
-        return $stmt->execute();
-    }
-
-    public static function getAll($conn) {
-        $sql = "SELECT * FROM usuarios";
-        $result = $conn->query($sql);
-        return $result->fetch_all(MYSQLI_ASSOC);
-    }
-
-    public static function getById($conn, $id) {
-        $sql = "SELECT * FROM usuarios WHERE id= ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $id);
+        $stmt->bind_pxaram("s", $email);
         $stmt->execute();
-        return $stmt->get_result()->fetch_assoc();
-    }
-
-    public static function delete($conn, $id) {
-        $sql = "DELETE FROM usuarios WHERE id= ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $id);
-        return $stmt->execute();
+        $result = $stmt->get_result();
+ 
+        if($user = $result->fetch_assoc()){
+            if(senhaControler::leitorHash($password, $user['senha'])) {
+                unset($user['senha']);  
+                return $user;
+            }
+        }
     }
 }
+ 
 ?>

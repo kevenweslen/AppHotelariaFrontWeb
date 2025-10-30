@@ -15,7 +15,7 @@
 
 input, .select-qtd{
     border-style: solid;
-    border-color: rgb(117, 171, 233);
+    border-color: #015a26;
     border-radius: 10px;
     margin-bottom: 15px;
 }
@@ -62,4 +62,17 @@ input, .select-qtd{
     display: flex;
     justify-content: center;
     gap: 15px;
+}
+.imputNomeQuarto {
+    padding: 14px 16px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-family: 'Segoe UI', sans-serif;
+    width: 100%;
+    max-width: 350px;
+    background: #f8f9fa;
+    box-shadow: 
+        inset 0 2px 4px rgba(0,0,0,0.1),
+        0 1px 2px rgba(0,0,0,0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }

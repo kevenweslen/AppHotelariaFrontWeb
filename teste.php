@@ -21,6 +21,9 @@ $data = [
 ];
 */
 
+echo senhaControler::geradorHash("123");
+
+
 //quartoControler::getAll($conn);
 //clientController::getAll($conn);
 //adicionalController::getAll($conn);

@@ -1,6 +1,6 @@
 <?php
     require_once "../confg/dataBase.php";
-    require_once "../controler/autenticador.php";
+    require_once "../controllers/autenticador.php";
     $title = "AppHotelaria";
 //    require_once "Utils/cabecalho.php";
 
@@ -9,7 +9,7 @@ $data = [
     "senha"=>"123456"
 ];
 
-    autenticador::login($conn, $data);
+    Controlador::login($conn, $data);
 
 ?>
 

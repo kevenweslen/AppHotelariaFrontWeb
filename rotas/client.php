@@ -3,6 +3,7 @@
 require_once __DIR__ . "/../controllers/clienteController.php";
 
 if ( $_SERVER['REQUEST_METHOD'] === "GET" ){
+    validateTokenAPI("funcionario");
     $id = $segments[2] ?? null;
 
     if ($id){
@@ -16,11 +17,13 @@ elseif ( $_SERVER['REQUEST_METHOD'] === "POST" ){
     clienteController::create($conn, $data);
 }
 elseif ( $_SERVER['REQUEST_METHOD'] === "PUT" ){
+    validateTokenAPI("funcionario");
     $data = json_decode( file_get_contents('php://input'), true );
     $id = $data['id'];
     clienteController::update($conn, $id, $data);
 }
 elseif ( $_SERVER['REQUEST_METHOD'] === "DELETE" ){
+    validateTokenAPI("funcionario");
     $data = json_decode( file_get_contents('php://input'), true );
     $id = $data['id'];
     if (isset($id)){

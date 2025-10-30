@@ -3,6 +3,7 @@
 require_once __DIR__ . "/../controllers/adicionalController.php";
 
 if ( $_SERVER['REQUEST_METHOD'] === "GET" ){
+    validateToken("funcionario");
     $id = $segments[2] ?? null;
 
     if ($id){
@@ -10,17 +11,20 @@ if ( $_SERVER['REQUEST_METHOD'] === "GET" ){
     }else{
         adicionalController::getAll($conn);
     }
-}
+} 
 elseif ( $_SERVER['REQUEST_METHOD'] === "POST" ){
+    validateTokenAPI("funcionario");
     $data = json_decode( file_get_contents('php://input'), true );
     adicionalController::create($conn, $data);
 }
 elseif ( $_SERVER['REQUEST_METHOD'] === "PUT" ){
+    validateTokenAPI("funcionario");
     $data = json_decode( file_get_contents('php://input'), true );
     $id = $data['id'];
     adicionalController::update($conn, $id, $data);
 }
 elseif ( $_SERVER['REQUEST_METHOD'] === "DELETE" ){
+    validateTokenAPI("funcionario");
     $data = json_decode( file_get_contents('php://input'), true );
     $id = $data['id'];
     if (isset($id)){
