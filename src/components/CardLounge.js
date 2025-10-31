@@ -6,7 +6,7 @@ export default function CardLounge(cardLoungeItem, index) {
     } = cardLoungeItem || {}
     const cardLounge = document.createElement('div');
     cardLounge.innerHTML = `
-    <div class="card" style="width: 18rem; height: 17rem;">
+<div class="card" style="width: 18rem; height: 17rem;">
         <img src="publics/assets/img/${path}" style="height: 15rem"
         class="card-img-top" alt="...">
         <div class="btn-group dropup">

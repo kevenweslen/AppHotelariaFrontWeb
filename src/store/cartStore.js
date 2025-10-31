@@ -82,12 +82,7 @@ export function clearHotel_Cart(){
 }
 
 export function getTotlaItems(){
-    const { items } = getCart();
-    const total = items.reduce((acc, it) =>
-    acc + Number(it.subtotal || 0), 0
-    );
-    return {
-        total,
-        atde_items: items.lenght
-    }
+    const {items} = getCart();
+    const total = items.reduce((acc, it) =>acc + Number(it.subtotal || 0), 0);
+    return total
 }
